@@ -1,8 +1,8 @@
-# AI GitHub Trends Analyzer
+# 🤖 AI GitHub Trends Analyzer
 
 An automated AI-powered agent that monitors trending GitHub repositories in the AI/ML ecosystem, analyzes emerging technologies, and delivers weekly intelligence reports.
 
-## Overview
+## 📋 Overview
 
 This project demonstrates an **AI workflow agent** that:
 - ✅ Automatically fetches trending AI repositories from GitHub
@@ -15,7 +15,7 @@ This project demonstrates an **AI workflow agent** that:
 
 ---
 
-## What It Does
+## 🎯 What It Does
 ```
 GitHub API → Fetch Trending Repos (AI-focused)
      ↓
@@ -38,7 +38,7 @@ Save to /reports & Send Email
 
 ---
 
-## Architecture
+## 🏗️ Architecture
 
 **Type:** Trigger-driven automation workflow with AI augmentation
 
@@ -148,7 +148,7 @@ git push origin main
 
 ---
 
-## Schedule
+## ⏰ Schedule
 
 **Automatic runs:** Every **Monday at 7:45 AM UTC**
 
@@ -162,11 +162,11 @@ git push origin main
 
 Reports include:
 
-### Trending AI Repositories
+### 🔥 Trending AI Repositories
 - Repository name, description, stars, language, topics
 - Direct links to each project
 
-### AI Analysis
+### 🤖 AI Analysis
 - **Key Trends:** Emerging technologies and patterns
 - **Notable Projects:** Highlighted interesting repositories
 - **Technology Insights:** What trends mean for the AI ecosystem
@@ -174,7 +174,7 @@ Reports include:
 
 ---
 
-## Technologies Used
+## 🛠️ Technologies Used
 
 | Technology | Purpose |
 |------------|---------|
@@ -184,16 +184,6 @@ Reports include:
 | **resend** | Email delivery service |
 | **dotenv** | Environment variable management |
 | **GitHub Actions** | Workflow automation |
-
----
-
-**Key Learnings:**
-- ✅ Workflow automation fundamentals
-- ✅ AI context engineering and prompting
-- ✅ External API integration (REST)
-- ✅ CI/CD with GitHub Actions
-- ✅ Email delivery systems
-- ✅ Documentation and code organization
 
 ---
 
