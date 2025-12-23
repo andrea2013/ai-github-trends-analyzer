@@ -122,13 +122,71 @@ ${analysis}
 }
 
 async function sendEmail(report) {
-  const htmlReport = report.replace(/\n/g, '<br>');
-  
+  const date = new Date().toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
+  // Convert markdown to HTML with better formatting
+  const htmlContent = report
+    .replace(/^# (.*$)/gm, '<h1 style="color: #2563eb; font-size: 28px; margin: 20px 0 10px 0;">$1</h1>')
+    .replace(/^## (.*$)/gm, '<h2 style="color: #1e40af; font-size: 22px; margin: 20px 0 10px 0;">$1</h2>')
+    .replace(/^### (.*$)/gm, '<h3 style="color: #334155; font-size: 18px; margin: 15px 0 8px 0; font-weight: 600;">$1</h3>')
+    .replace(/\*\*(.*?)\*\*/g, '<strong style="color: #0f172a;">$1</strong>')
+    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" style="color: #2563eb; text-decoration: none;">$1</a>')
+    .replace(/⭐ (\d+)/g, '<span style="background: #fef3c7; padding: 2px 8px; border-radius: 4px; font-weight: 600;">⭐ $1</span>')
+    .replace(/🔥/g, '<span style="font-size: 24px;">🔥</span>')
+    .replace(/🤖/g, '<span style="font-size: 24px;">🤖</span>')
+    .replace(/\n/g, '<br>');
+
+  const htmlEmail = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <div style="max-width: 800px; margin: 0 auto; background-color: #ffffff; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    
+    <!-- Header -->
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 40px 30px; text-align: center;">
+      <h1 style="color: #ffffff; margin: 0; font-size: 32px; font-weight: 700;">
+        🤖 AI GitHub Trends Report
+      </h1>
+      <p style="color: #e0e7ff; margin: 10px 0 0 0; font-size: 16px;">
+        ${date}
+      </p>
+    </div>
+
+    <!-- Content -->
+    <div style="padding: 40px 30px; color: #334155; line-height: 1.8; font-size: 15px;">
+      ${htmlContent}
+    </div>
+
+    <!-- Footer -->
+    <div style="background-color: #f1f5f9; padding: 30px; text-align: center; border-top: 1px solid #e2e8f0;">
+      <p style="margin: 0 0 10px 0; color: #64748b; font-size: 14px;">
+        Generated automatically by AI GitHub Trends Analyzer
+      </p>
+      <p style="margin: 0; color: #94a3b8; font-size: 13px;">
+        <a href="https://github.com/andrea2013/ai-github-trends-analyzer" style="color: #2563eb; text-decoration: none;">
+          View on GitHub
+        </a>
+      </p>
+    </div>
+
+  </div>
+</body>
+</html>
+  `;
+
   await resend.emails.send({
     from: 'AI Trends <onboarding@resend.dev>',
     to: process.env.EMAIL_TO,
-    subject: `🤖 AI GitHub Trends - ${new Date().toLocaleDateString()}`,
-    html: `<pre style="font-family: system-ui; padding: 20px; max-width: 800px;">${htmlReport}</pre>`
+    subject: `🤖 AI GitHub Trends Report - ${date}`,
+    html: htmlEmail
   });
 }
 

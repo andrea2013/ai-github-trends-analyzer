@@ -187,4 +187,13 @@ Reports include:
 
 ---
 
+## Security Note
+
+All sensitive credentials (API keys, tokens) are stored securely:
+- Locally: `.env` file (not committed to Git)
+- CI/CD: GitHub Secrets (encrypted)
+- Never hardcoded in source code
+
+This project follows security best practices for credential management.
+
 *Last updated: December 23, 2024*
