@@ -2,8 +2,8 @@ name: Weekly AI Trends Report
 
 on:
   schedule:
-    # Every Tuesday at 02:35 UTC
-    - cron: "45 2 * * 2"
+    # Every Monday at 02:35 UTC
+    - cron: "45 7 * * 2"
   workflow_dispatch:
 
 permissions:
