@@ -35,3 +35,62 @@ GH_TOKEN=your_github_token
 GROQ_API_KEY=your_groq_api_key
 RESEND_API_KEY=your_resend_api_key
 EMAIL_TO=recipient@example.com
+
+Quick setup (high level)
+
+Create required API keys
+
+GitHub token (used for API access and/or repo operations)
+
+Groq API key (LLM analysis)
+
+Resend API key (email delivery)
+
+Add repository secrets (for GitHub Actions)
+Go to: Settings → Secrets and variables → Actions and add:
+
+GH_TOKEN
+
+GROQ_API_KEY
+
+RESEND_API_KEY
+
+EMAIL_TO
+
+Confirm GitHub Actions is enabled
+
+Repo → Actions tab should show the workflow
+
+The workflow supports manual execution via Run workflow
+
+Run a test
+
+Repo → Actions → Weekly AI Trends Report → Run workflow
+
+Verify you receive the email and a new file appears in reports/
+
+Review results
+
+Reports are stored in reports/ (history is preserved as commits)
+
+Workflow logs are available in the Actions run details
+
+Run locally
+
+1. Install dependencies:
+npm install
+2. Create a .env file (see Configuration above).
+3. Run:
+node analyzer.js
+
+Expected result:
+
+A new Markdown report is created in reports/
+An email is sent to EMAIL_TO
+
+Schedule (UTC)
+The workflow runs automatically every Monday at 07:45 UTC and can also be triggered manually from the Actions tab.
+Cron:
+45 7 * * 1
+
+
